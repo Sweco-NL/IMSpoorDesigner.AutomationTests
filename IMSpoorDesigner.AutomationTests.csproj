@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>IMSpoorDesigner.AutomationTests</AssemblyTitle>
     <Company>Sweco</Company>
@@ -8,40 +8,21 @@
     <Copyright>Copyright © Sweco 2025</Copyright>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
+    <Platforms>AnyCPU;x64</Platforms>
+    <Nullable>enable</Nullable>
+    <IsTestProject>true</IsTestProject>
   </PropertyGroup>
-  <ItemGroup>
-    <Analyzer Include="packages\MSTest.Analyzers.3.7.1\analyzers\dotnet\cs\MSTest.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="packages\MSTest.Analyzers.3.7.1\analyzers\dotnet\cs\MSTest.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FlaUI.Core" Version="4.0.0" />
     <PackageReference Include="FlaUI.UIA3" Version="4.0.0" />
-    <PackageReference Include="Interop.UIAutomationClient" Version="10.19041.0" />
-    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.22.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.*" />
-    <PackageReference Include="Microsoft.Testing.Extensions.Telemetry" Version="1.5.1" />
-    <PackageReference Include="Microsoft.Testing.Extensions.TrxReport.Abstractions" Version="1.5.1" />
-    <PackageReference Include="Microsoft.Testing.Extensions.VSTestBridge" Version="1.5.1" />
-    <PackageReference Include="Microsoft.Testing.Platform" Version="1.5.1" />
-    <PackageReference Include="Microsoft.Testing.Platform.MSBuild" Version="1.5.1" />
-    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="17.12.0" />
-    <PackageReference Include="MSTest.Analyzers" Version="3.7.1" />
-    <PackageReference Include="MSTest.TestAdapter" Version="3.7.1" />
-    <PackageReference Include="MSTest.TestFramework" Version="3.7.1" />
-    <PackageReference Include="System.CodeDom" Version="9.0.1" />
-    <PackageReference Include="System.Collections.Immutable" Version="9.0.1" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="9.0.1" />
-    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="9.0.1" />
-    <PackageReference Include="System.DirectoryServices" Version="9.0.1" />
-    <PackageReference Include="System.Drawing.Common" Version="9.0.1" />
-    <PackageReference Include="System.Reflection.Metadata" Version="9.0.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="MSTest.Analyzers" Version="3.7.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="MSTest.TestAdapter" Version="3.7.3" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.7.3" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.0" />
-    <PackageReference Include="System.Security.AccessControl" Version="6.0.1" />
-    <PackageReference Include="System.Security.Permissions" Version="9.0.1" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.1" />
   </ItemGroup>
 </Project>

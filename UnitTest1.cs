@@ -12,6 +12,12 @@ public class UiTests
     private const string AppPath = @"D:\Projecten\Development - IMX\IMSpoorDesigner\IMSpoorDesigner.Application\bin\x64\Debug\net8.0-windows10.0.19041.0\Application.IMSpoorDesigner.exe"; // Update this with your app's path.
 
     [TestMethod]
+    public void Test1 ()
+    {
+        Assert.IsFalse(true);
+    }
+
+    [TestMethod]
     public void TestButtonClick()
     {
         using (var app = Application.Launch(AppPath))
