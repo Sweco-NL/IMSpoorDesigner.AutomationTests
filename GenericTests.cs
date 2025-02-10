@@ -9,10 +9,14 @@ using System.Runtime.Versioning;
 
 namespace IMSpoorDesigner.AutomationTests
 {
+
+
     [TestClass]
     public class GenericTests
     {
-        private const string AppPath = @"D:\Projecten\Development - IMX\IMSpoorDesigner\IMSpoorDesigner.Application\bin\x64\Debug\net8.0-windows10.0.19041.0\Application.IMSpoorDesigner.exe"; // Update this with your app's path.
+       // private const string AppPath = @"D:\Projecten\Development - IMX\IMSpoorDesigner\IMSpoorDesigner.Application\bin\x64\Debug\net8.0-windows10.0.19041.0\Application.IMSpoorDesigner.exe"; // Update this with your app's path.
+        private static readonly string AppPath = ConfigHelper.GetApplicationPath();
+
 
 
         [TestMethod]
