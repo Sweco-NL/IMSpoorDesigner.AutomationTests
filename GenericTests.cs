@@ -6,6 +6,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading;
 using FlaUI.Core.Input;
 using System.Runtime.Versioning;
+using System.IO;
+using System.Reflection;
+using FlaUI.Core.Tools;
 
 namespace IMSpoorDesigner.AutomationTests
 {
@@ -14,21 +17,20 @@ namespace IMSpoorDesigner.AutomationTests
     [TestClass]
     public class GenericTests
     {
-       // private const string AppPath = @"D:\Projecten\Development - IMX\IMSpoorDesigner\IMSpoorDesigner.Application\bin\x64\Debug\net8.0-windows10.0.19041.0\Application.IMSpoorDesigner.exe"; // Update this with your app's path.
+
         private static readonly string AppPath = ConfigHelper.GetApplicationPath();
-
-
-
-        [TestMethod]
-        [SupportedOSPlatform("windows")]
-        public void TestOpenIMXAndShowOnMap()
+        private static string GetAppFolder
         {
-            using var app = Application.Launch(AppPath);
-            using var automation = new UIA3Automation();
-            // Get the main window of the application.
-            var mainWindow = app.GetMainWindow(automation);
+            get
+            {
+                var baseDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                return Path.Combine(baseDir, "..\\..\\..\\TestFiles\\");
+            }
+        }
+        [SupportedOSPlatform("windows")]
 
-
+        private void OpenImxFile(Application app, Window mainWindow, string fileName)
+        {
             var menu = mainWindow.FindFirstDescendant(cf => cf.ByClassName("RibbonApplicationMenu")).AsMenu();
             var menuBtn = menu.FindFirstDescendant(cf => cf.ByClassName("RibbonToggleButton"));
             menuBtn?.Click();
@@ -42,17 +44,32 @@ namespace IMSpoorDesigner.AutomationTests
             var filePathTextBox = dialogWindow.FindFirstDescendant(cf => cf.ByAutomationId("1148")).AsComboBox(); // "1148" is a common AutomationId for file dialogs
             var txtInput = filePathTextBox.FindFirstChild().As<TextBox>();
             txtInput.Focus();
-
-            txtInput.Text = @"D:\Data\IMX\2021-11-17_1243_Halfweg.xml";
-            txtInput.Patterns.Value.Pattern.SetValue(@"D:\Data\IMX\2021-11-17_1243_Halfweg.xml");
-
+            txtInput.Text = fileName;
+            txtInput.Patterns.Value.Pattern.SetValue(fileName);
             var openBtn = dialogWindow.FindFirstChild(cf => cf.ByName("Open")).AsButton();
             openBtn.Click();
 
+
+        }
+
+        [TestMethod]
+        [SupportedOSPlatform("windows")]
+        public void TestOpenIMXAndShowOnMap()
+        {
+            using var app = Application.Launch(AppPath);
+            using var automation = new UIA3Automation();
+            var mainWindow = app.GetMainWindow(automation);
+            OpenImxFile(app, mainWindow, "2021-11-17_1243_Halfweg.xml");
+          
             //assert//
+            var treeView = mainWindow.FindFirstDescendant(cf => cf.ByAutomationId("ImxTreeview"));
+            Thread.Sleep(2000);
+            var treeItem = treeView.FindFirstChild(cf => cf.ByName("IMSpoor.TreeviewManager.TreeItemViewModels.SituationTreeItemViewModel"));
+            
+            Assert.IsNotNull(treeItem,"There is no treeviewCreated, IMX not loaded!");
+            
 
-
-            app.Close();
+            //app.Close();
 
             // Optionally verify some UI change after clicking the button.
             //var label = mainWindow.FindFirstDescendant(cf => cf.ByAutomationId("YourLabelId")).AsLabel();

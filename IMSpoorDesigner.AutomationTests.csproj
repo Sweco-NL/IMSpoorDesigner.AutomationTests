@@ -14,6 +14,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="app.config" />
+    <None Remove="TestFiles\2021-11-17_1243_Halfweg.xml" />
   </ItemGroup>
  
   <ItemGroup>
@@ -31,6 +32,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="app.config" />
+    <Resource Include="TestFiles\2021-11-17_1243_Halfweg.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">
