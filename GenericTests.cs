@@ -65,7 +65,6 @@ namespace IMSpoorDesigner.AutomationTests
             var treeView = mainWindow.FindFirstDescendant(cf => cf.ByAutomationId("ImxTreeview"));
             Thread.Sleep(2000);
             var treeItem = treeView.FindFirstChild(cf => cf.ByName("IMSpoor.TreeviewManager.TreeItemViewModels.SituationTreeItemViewModel"));
-            
             Assert.IsNotNull(treeItem,"There is no treeviewCreated, IMX not loaded!");
             
 
